@@ -4,12 +4,13 @@ The top-level auxiliary file: main.aux
 A level-1 auxiliary file: TitlePage.aux
 A level-1 auxiliary file: Chapter1.aux
 A level-1 auxiliary file: Chapter2.aux
+A level-1 auxiliary file: ReadingMaterials.aux
 The style file: ieeetr.bst
 I found no \citation commands---while reading file main.aux
 Database file #1: References.bib
 You've used 0 entries,
             1876 wiz_defined-function locations,
-            480 strings with 3505 characters,
+            481 strings with 3525 characters,
 and the built_in function-call counts, 20 in all, are:
 = -- 0
 > -- 0

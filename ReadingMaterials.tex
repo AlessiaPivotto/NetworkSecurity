@@ -1,0 +1,41 @@
+\chapter{Reading Materials}
+In this chapter I'm gonna sum up the extra readings suggested by professor.
+\section{Attack Trees - B. Schneier}
+Bro tells us that security is all a set-up, not only are systems compromised extra often but moreover you never really know what security means, is the system secure for me? for a few days? etc\dots
+\\
+So we need a way to model threats against computer systems to understand the risks and to be able to make decisions about how to mitigate them.
+Basically, you represent attacks against a system in a tree structure, with the goal as the root node and different ways of achieving that goal as leaf nodes.
+Each node becomes a subgoal, and children of that node are ways to achieve that subgoal.
+Note that there can be AND and OR nodes, where AND nodes are subgoals that must be achieved together, and OR nodes are subgoals that can be achieved independently.
+Once the basic attack tree is completed we have to assign values to the various leaf nodes: I for impossible and P for possible; then calculate the security of the goal. The value of an OR node is
+possible if any of its children are possible, and impossible if all of its children are impossible. The value of an AND node is possible only if all children are possible, and impossible otherwise.
+\\Assigning “possible” and “impossible” to the nodes is just one way to look at the tree. Any Boolean
+value can be assigned to the leaf nodes and then propagated up the tree structure in the same
+manner: easy versus difficult, expensive versus inexpensive, intrusive versus nonintrusive, legal versus illegal, special equipment required versus no special equipment\dots
+\\Assigning “expensive” and “not expensive” to nodes is useful, but it would be better to show exactly
+how expensive. It is also possible to assign continuous values to nodes, including probability of success.
+\\\textit{NB: Every time you query the attack tree about a certain characteristic of attack, you learn
+more about the system’s security.But to make this work, you must marry attack trees with knowledge about attackers.}
+\\
+TODO: pgp example + images I guess
+\\
+Our friend then makes an example with PGP to get to say two things: the first is that I can write these attack trees even as if they were an index of a book, and the second is that I don’t really need to know how all works, I just need to know the value of root nodes to protect. Which I don’t understand too much, but okay, I’m gonna go with trust, he probably know more than I do.
+Conclusion cute directly from the paper:  
+Attack trees provide a formal methodology for analyzing the security of systems and subsystems.
+They provide a way to think about security, to capture and reuse expertise about security, and to
+respond to changes in security. Security is not a product—it’s a process. Attack trees form the basis
+of understanding that process.
+\section{Reflections on Trusting Trust - K. Thompson}
+Key of the paper: To what extent should one trust a statement that a program is free of Trojan horses. Perhaps it is more important to trust the people who wrote the software.
+Basically he makes an example to demonstrate that you can't trust the source code of a program, because you can't trust the compiler. He writes a program that, when it compiles the login program, it adds a backdoor to the login program and to the compiler itself. So, even if you have the source code of the compiler, you can't trust it. Substantially is the same example that professor made during the lecture.
+\\you can't trust anything that is not totally create by yourself. No amount of source-level verification or scrutiny will protect you from using untrusted code. As the level of program gets lower, these bugs will be harder and harder to detect. A well-installed microcode bug will be almost impossible to detect.
+\section{An Introduction to BGP - Geoff Huston}
+\section{The Internet:A System of Interconnected Autonomous Systems}
+\section{Security Problems in the TCP/IP Protocol Suite - S. Bellovin}
+\section{Analyzing Interaction Between Distributed Denial of Service Attacks And Mitigation Technologies - Blackert et al.}
+\section{Statistical Analysis of Malformed Packets and Their Origins in the Modern Internet}
+\section{Network Support for IP Traceback}
+\section{Inferring Internet Denial-of-Service Activity}
+\section{A brief introduction to DNSSEC}
+\section{The Sad Story of DNSSEC}
+This is a paper that studies the current deployment status of DNSSEC and the reasons behind the slow adoption of this technology. 
