@@ -1,1 +1,90 @@
-\chapter{capitolo due}
+\chapter{Network aspects}
+Internet communication 
+Internet is made of several logically separated networks -> Autonomous Systems (AS)
+PS: Internet= network of networks
+Each AS autonomously manages communications within itself through Interior Gateway Protocols (IGP) -> route within each AS
+e.g. two commonly used IGPs are the Routing Information Protocol (RIP) and the Open Shortest Path First (OSPF) protocol.
+Each AS can communicate to other AS using Exterior Gateways Protocols -> route between ASs, such as Border Gateway Protocol.
+
+
+OSI data link layer
+Data link layer is the lowest “logical” level, data link interconnects physical interfaces and each physical interface is identified by a MAC address(“Ethernet address”, 48-bit Network interface identifiers, closest representation of final destination of a frame, HEX notation, used to route packets in local networks).
+
+
+
+Mac addresses uniquely identify a network interface and is assigned by the producer according to the standard IEEE 802. 
+eg da fare 
+
+OSI NETWORK LAYER
+The Network Layer provides information on how to reach other systems (addressing functionalities), IP operates at this layer so high-level representation of a host’s addresses, conveys information to route the datagram, IPv4 defined in RFC 791
+Most IP addresses are dynamically assigned by an authority (e.g. ISP’s DHCP server). As opposed to MAC addresses that are fixed by the vendor. “Connectionless” protocol (stateless): no notion of “established connection” at this stage, only provides the means necessary for a packet to reach its destination.
+
+connection vs connectionless
+
+A communication is made of a number of messages; communications start, develop, and end. Stateful protocols provide means to establish and close a connection(e.g. TCP).
+Stateless protocols do not have this notion(IP messages are stand-alone packets).
+
+ip vs mac da fare
+
+IP addresses
+IP provides a structured way to abstract host addresses away from their physical properties
+There are two versions: IPv4 and IPv6, the first is the most common and is currently used,(32 bits) while the latter is early adoption and will be seen commonly in the future(128 bits).
+Make it possible to efficiently talk between systems in different AS
+
+routing da fare 
+
+ARP protocol
+ARP = address resolution protocol
+Allows systems to associate an IP address to a MAC address and allows discovery through broadcast. ARP tables contain information to translate IP addresses into MAC addresses.
+
+arp tables da fare 
+
+ARP query
+
+All addresses in an ARP table are added by one of two mechanisms:
+– ARP request-reply
+-> who is 192.168.0.16 tells 192.168.0.1
+-> 192.168.0.16 is at 00-10-BC-2c-11-56
+– Gratuitous ARP
+-> 192.168.0.16 is at 00-10-BC-2c-11-56
+
+The discovery process happens through queries to neighbor devices
+– Broadcast message to the desired IP
+• L2 ethernet address FF-FF-FF-FF-FF-FF
+
+The system with the requested IP replies back with its correct mac address
+
+
+frame + tables + eg+ broadcast ancora da fare 
+
+ARP poisoning
+
+ARP answers or Gratuitous ARP frames do not require an (additional) answer/confirmation, so it’s a declarative protocol. This means that nodes are not authenticated, so whomever can say I am x.x1.x2.x3, my mac address is hh.hh1.hh2.hh3.hh4.hh5.
+• C can tell B “D is at [C mac address]”
+• C can tell D “B is at [C mac address]”
+• As a result every communication between B and D will pass by C
+
+da finire
+
+ARP poisoning - limitations
+Works only on local networks, where MAC addresses are actually meaningful. 
+NB: when communication is targeted to different networks, IP addresses are used.
+Routers and DNSs have MAC addresses too..
+The poisoning works because systems are not authenticated, some implementations/third party tools can mitigate the problem, such as checking for anomalies.
+
+ip header credo convenga guardare da doriguzzi
+
+
+Subnets and CIDR + es da fare 
+
+Subnets are logical divisions of IP addresses, so possible to split a network in multiple sub-networks
+IP bits are divided in:
+– x network bits
+– y subnet bits
+– z host bits
+Subnet mask indicates sections of IP addresses meant for network+subnet
+– 255.255.255.0 à 24 bits to network+subnet, 8 bits to hosts
+CIDR à synthetic way to represent subnet masks
+– Classless Inter-Domain Routing
+– Indicates number of bits covered by the mask
+– 192.168.10.1/24 = 192.168.10.1/255.255.255.0
