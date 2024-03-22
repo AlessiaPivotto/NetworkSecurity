@@ -52,27 +52,20 @@ At the bare minimum, any “piece of information” is only useful if it can be 
 But who can act upon information?
 \\Humans are not the only “users” of information, the human user of the system avertedly or un-avertedly modifies information. A system/software/module/thread can act on the whole system (or another system) on behalf of a human user $\Rightarrow$ “Delegation” is the mechanism by which, for example, software threads are spawned (E.g., with the privileges of the entity that spawned it). While a human user may or may not know what they do a “surrogate” does not. There is no notion of “avertedly” or “un-avertedly”.
 Computer systems do not know what they are doing. They can only execute instructions (information) to operate over some other information. Systems can only be instructed to preserve the security properties of that information by means of some mechanism(es Confidentiality $\Rightarrow$ crypto, Integrity $\Rightarrow$ secure hardware, Availability $\Rightarrow$ redundancy).
-\\\\Esempietti carini che ha fatto: CBC $\Rightarrow$ sai che prendi roba e la butti nel blocco, quando esce la unisci con altra e la butti nel prossimo blocco… problema se qualcuno cambia ste cose (change bits) $\Rightarrow$ attacks because pc doesn’t understand that something goes wrong, a human yes but computer no, it’s a little bit stupid, so attacker actions produces an invalid value and, because the missing sanity check, there is an attack.
-\\\\Altro esempietto cutie: Zero trust (è legato alla roba del TCB $\Rightarrow$ Trusting Computing Base che vedrai dopo, $\Rightarrow$ Combination of hardware, firmware, and software that can breach your security policy).
+\\\\Cute examples that he made: CBC $\Rightarrow$ you know that you take something and put it in the block, then the output is mixing with another input and da da da... problem if someone change bits $\Rightarrow$ attacks because pc doesn’t understand that something goes wrong, a human yes but computer no, it’s a little bit stupid, so attacker actions produces an invalid value and, because the missing sanity check, there is an attack.
+\\\\Another little cutie: Zero trust (bond directly with TCB $\Rightarrow$ Trusting Computing Base which you'll see later $\Rightarrow$ Combination of hardware, firmware, and software that can breach your security policy).
 Practically I need a secure/trusting component to build a system, but what about zero-trust architectures?
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.5]{Figures/ZeroTrust.png}
     \caption{Zero Trust}
 \end{figure}
-\\Trust in information security (more formally)
-\begin{itemize}
-    \item Ken Thompson, 1983 ACM Turing Award Lecture
-    \item “Reflections on Trusting Trust” is a mandatory reading, http://dl.acm.org/citation.cfm?id=358210
-    \item Suggested reading:
-    \item Bruce Schneier, ”Attack trees”, Dr. Dobb's Journal, December 1999.
-\end{itemize}
+\\\textbf{Trust in information security} (Paper's recap in \ref{section:Trust})
 So, what software/system can one trust?
 \\Imagine an authentication mechanism $\Rightarrow$ User inputs username, User inputs password, User presses enter, User has access to desktop…There are a lot of trust assumptions here!
 The user trusts the authentication mechanism. But what really happened? Did the authentication sw do the actual match? Will it only grant access if it matches your credentials? Did it send your credentials to a third party? Did it use your credentials to read and copy your data?
 How do you increase your level of trust in the software? You can look at the source code, but is this enough?
 \\\textbf{Example:}
-
 \begin{figure}[h]
     \centering
     \begin{subfigure}[b]{0.4\textwidth}
@@ -89,35 +82,35 @@ How do you increase your level of trust in the software? You can look at the sou
         \label{Compiler 1.1}
     \end{subfigure}
 \end{figure}
-
+\\Looking at this example we can understand why we can't trust the source code of a program because even the compiler can be compromised. The compiler can be modified to include code that never appears in the source code. So, even if you have the source code of the compiler, you can't trust it. 
+In the previous image indeed, the compiler 1.0 compiles the login program and adds a backdoor to the login program and to the compiler itself. So, even if you have the source code of the compiler, you can't trust it. 
 What or who did really generate that software? The human being that wrote the sw source code? The compiler that compiled the sw source code? The human being that wrote the compiler that compiles the sw source code? The compiler that compiles the compiler that compiled the sw source code?...
 So who do you trust?
-Thompson’s view $\Rightarrow$The compiler can be modified in any way to include
-code that never appears in the sw source code, and depending on how many generations passed, it won’t appear in the previous compiler versions source code either.
-$\Rightarrow$ Trusting trust: You can't trust code that you did not totally create yourself. No	
-amount of source-level verification or scrutiny will protect you from using untrusted code.”
+Thompson’s view $\Rightarrow$ The compiler can be modified in any way to include code that never appears in the sw source code, and depending on how many generations passed, it won’t appear in the previous compiler versions source code either.
+$\Rightarrow$ Trusting trust:"You can't trust code that you did not totally create yourself. No amount of source-level verification or scrutiny will protect you from using untrusted code"\cite{AttackTrees}.
 
-
-Computer Security vs Network Security
-
+\section{Computer Security vs Network Security}
 A computer network is a general architecture that allows computer systems to share information remotely. Network security is based on the same exact idea of preserving the CIA properties of information, it makes for an especially interesting case.
 Who can be trusted over the network? Can you trust your own system? Can you trust the communication channel? Can you trust the destination system?
-
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Figures/ClientServer.png}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Figures/ClientServer1.png}
+    \end{subfigure}
+\end{figure}
 
 CLIENT-SERVER RECAP FOR DUMMIES, TECHNICAL LOOK, ATTACK POINTS (when 2 component, spinning 2 different processes, that are not suppose to interact, are forced/needed to interact-> an attacker can create a gap/bridge-> vulnerability!) LEGACY ISSUE
 
-
-
-ATTACK
-A general attacker might infiltrate the communication in between hops, impersonate the client, modify connections/routing, be/infiltrate one of the hops or act “legally” until end of service (after which it may act maliciously)...
-
-
-*Attack trees*
-
-
+Let's talk about attacks...
+A general attacker might infiltrate the communication in between hops, impersonate the client, modify connections/routing, be/infiltrate one of the hops or act “legally” until end of service (after which it may act maliciously)\dots
+Info about Attack trees in \ref{section:AttackTrees}
 Attack models in network setting: outright malicious attacker
-
-Typically, the malicious attacker aims at reading or modifying the messages (in part or fully)->That’s a confidentiality, integrity, availability problem.
+Typically, the malicious attacker aims at reading or modifying the messages (in part or fully) $\Rightarrow$ That’s a confidentiality, integrity, availability problem.
 In this contest, this attacker is typically called “man in the middle” or “man in the browser”. Attackers can intercept and act upon a communication between client and server, such as channel redirection, block communication entirely or spoofing the user’s identity.
 An example could be injection of malicious content, in which there is a manipulation of server response, then client’s answer can also be modified by the attacker, so a connection Hijack and finally attacker injects him/herself in the communication and spoofs the victim’s identity.
 NB: Formally known as the Dolev-Yao model, it applies to any entity of the network
@@ -127,4 +120,10 @@ The goal of this attacker is to use the client’s information after correctly h
 A possible example could be where DB Server is the attacker, it provides agreed service
 correctly, like answers queries with correct data. After the query is delivered to the client, the server uses the query’s information to perform user profiling.
 
-
+\section{Wrap-up}
+\begin{itemize}
+    \item Confidentiality, Integrity, Availability;
+    \item Can we trust computer systems?
+    \item What happens when we add networks in the scenario?
+    \item Attack and attackers models.
+\end{itemize}
