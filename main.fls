@@ -1049,6 +1049,9 @@ INPUT Chapter3.aux
 INPUT ./ReadingMaterials.aux
 INPUT ReadingMaterials.aux
 INPUT ReadingMaterials.aux
+INPUT ./PastExams.aux
+INPUT PastExams.aux
+INPUT PastExams.aux
 OUTPUT main.aux
 INPUT /usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -1256,6 +1259,8 @@ INPUT ./Chapter3.tex
 INPUT Chapter3.tex
 INPUT ./Chapter3.tex
 INPUT Chapter3.tex
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT ./ReadingMaterials.tex
 INPUT ./ReadingMaterials.tex
 INPUT ./ReadingMaterials.tex
@@ -1266,6 +1271,16 @@ INPUT ./ReadingMaterials.tex
 INPUT ReadingMaterials.tex
 INPUT ./ReadingMaterials.tex
 INPUT ReadingMaterials.tex
+INPUT ./PastExams.tex
+INPUT ./PastExams.tex
+INPUT ./PastExams.tex
+OUTPUT PastExams.aux
+INPUT ./PastExams.tex
+INPUT ./PastExams.tex
+INPUT ./PastExams.tex
+INPUT PastExams.tex
+INPUT ./PastExams.tex
+INPUT PastExams.tex
 INPUT ./main.bbl
 INPUT main.bbl
 INPUT ./main.bbl
@@ -1286,6 +1301,9 @@ INPUT Chapter3.aux
 INPUT ./ReadingMaterials.aux
 INPUT ReadingMaterials.aux
 INPUT ReadingMaterials.aux
+INPUT ./PastExams.aux
+INPUT PastExams.aux
+INPUT PastExams.aux
 INPUT ./main.out
 INPUT ./main.out
 INPUT /usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc
